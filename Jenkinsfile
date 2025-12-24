@@ -148,7 +148,7 @@ pipeline {
                     cosign version || true
 
                     echo "--- Logging into Nexus ---"
-                    cosign login ${NEXUS_REGISTRY} -u ${NEXUS_USER} -p ${NEXUS_PASS} --allow-insecure-registry
+                    cosign login ${NEXUS_REGISTRY} -u ${NEXUS_USER} -p ${NEXUS_PASS}
 
                     echo "--- Signing Image ---"
                     cosign sign --key ${COSIGN_KEY_FILE} \
