@@ -95,7 +95,7 @@ pipeline {
                 script {
                     echo "--- Generating SBOM ---"
                     sh "syft ${NEXUS_REGISTRY}/${IMAGE_NAME}:${params.VERSION_TAG} -o cyclonedx-json > sbom.json"
-                    sh "syft ${NEXUS_REGISTRY}/${IMAGE_NAME}:${params.VERSION_TAG} -o table"
+                    sh "syft ${NEXUS_REGISTRY}/${IMAGE_NAME}:${params.VERSION_TAG} -o table > sbom.txt"
                 }
             }
         }
@@ -222,6 +222,7 @@ pipeline {
             
             // Archive SBOM
             archiveArtifacts artifacts: 'sbom.json', fingerprint: true
+            archiveArtifacts artifacts: 'sbom.txt', fingerprint: true
             
             // // Cleanup
             // cleanWs()
