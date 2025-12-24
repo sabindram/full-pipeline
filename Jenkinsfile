@@ -190,7 +190,7 @@ pipeline {
                         sh """
                         docker run --rm \
                         -v \$(pwd):/zap/wrk/:rw \
-                        -t owasp/zap2docker-stable zap-baseline.py \
+                        -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py \
                         -t http://\$(ip -4 addr show docker0 | grep -oP '(?<=inet\\s)\\d+(\\.\\d+){3}'):${ZAP_PORT} \
                         -r zap_report.html \
                         || true 
